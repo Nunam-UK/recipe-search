@@ -1,0 +1,9 @@
+import{a as u,i as c}from"./assets/vendor-RrJn2z-B.js";(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const i of r.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&n(i)}).observe(document,{childList:!0,subtree:!0});function s(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(e){if(e.ep)return;e.ep=!0;const r=s(e);fetch(e.href,r)}})();const d="https://www.themealdb.com/api/json/v1/1/search.php?";function f(o){return u.get(d,{params:{s:o}}).then(t=>t.data)}const l=document.querySelector(".gallery"),a=document.querySelector(".loader");function m(o){const t=o.map(({strMealThumb:s,strMeal:n,strCategory:e,strArea:r})=>`
+      <li class='gallery-item'>
+      <img class="gallery-image" src="${s}">
+      <h3>Назва страви: ${n}</h3>
+      <p>Категорія: ${e}</p>
+      <p>Країна: ${r}</p>
+      </li>
+    `).join("");l.innerHTML+=t}function p(){l.innerHTML=""}function y(){a.classList.remove("is-hidden")}function h(){a.classList.add("is-hidden")}const g=document.querySelector(".form");g.addEventListener("submit",o=>{o.preventDefault();const t=o.target.elements["search-meal"].value.trim();if(!t){c.error({message:"Ви нічого не ввели",position:"topCenter"});return}p(),y(),f(t).then(s=>{s.meals.length===0?c.info({message:"Нічого не знайдено",position:"topCenter"}):m(s.meals)}).catch(s=>{c.error({message:"Помилка при завантажені",position:"topCenter"})}).finally(()=>{h()})});
+//# sourceMappingURL=index.js.map
